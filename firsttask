@@ -2,3 +2,5 @@ Regression Task:
 Data Source : http://data.dc.gov/
 Filename: Crime incidents (ASAP) 2013
 file format: csv
+Check number of columns in file : awk -F ',' '{ print NF}' crime_incidents_2013_CSV.csv
+
