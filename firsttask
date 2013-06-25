@@ -1,6 +1,28 @@
-Regression Task:
-Data Source : http://data.dc.gov/
-Filename: Crime incidents (ASAP) 2013
-file format: csv
-Check number of columns in file : awk -F ',' '{ print NF}' crime_incidents_2013_CSV.csv
+Assignment#1
+#Using EuStockMarkets data in R
+
+head(EuStockMarkets)
+mkt <- EuStockMarkets
+head(mkt)
+lin.fit0 <- lm(formula= FTSE ~ DAX, data=mkt)
+summary(lin.fit0)
+lin.fit1 <- lm(formula= FTSE ~ SMI, data=mkt)
+summary(lin.fit1)
+lin.fit2 <- lm(formula= FTSE ~ CAC, data=mkt)
+summary(lin.fit2)
+lin.fit3 <- lm(formula= FTSE ~ ., data=mkt)
+summary(lin.fit3)
+
+#Polynomial Regression of EuStockMarkets 
+#this is returning an error -$ operator is invalid for atomic vectors - will fix this once i know what to do
+
+mkt.polyfit <- lm(formula=mkt$FTSE ~ poly(mkt$SMI, 2, raw=T ))
+summary(mkt.polyfit)
+mkt.polyfit0 <- lm(formula=mkt$FTSE ~ poly(mkt$SMI, 3, raw=T ))
+summary(mkt.polyfit0)
+
+#Ridge Regression
+rdg.ridge.fit <- lm.ridge(FTSE ~ .,data=mkt, lambda= seq(0,6000,1))
+summary(rdg.ridge.fit)
+plot(rdg.ridge.fit)
 
