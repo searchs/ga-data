@@ -25,11 +25,12 @@ plot(lin.fit1)
 
 #Polynomial Regression of EuStockMarkets 
 #this is returning an error -$ operator is invalid for atomic vectors - will fix this once i know what to do
-
-mkt.polyfit <- lm(formula=mkt$FTSE ~ poly(mkt$SMI, 2, raw=T ))
+mktCol = as.data.frame(mkt)
+mkt.polyfit <- lm(formula=mktCol$FTSE ~ poly(mktCol$SMI, 2, raw=TRUE ))
 summary(mkt.polyfit)
-mkt.polyfit0 <- lm(formula=mkt$FTSE ~ poly(mkt$SMI, 3, raw=T ))
-summary(mkt.polyfit0)
+mkt.polyfit1 <- lm(formula=mktCol$FTSE ~ poly(mktCol$SMI, 3, raw=TRUE ))
+summary(mkt.polyfit1)
+
 
 #Ridge Regression
 rdg.ridge.fit <- lm.ridge(FTSE ~ .,data=mkt, lambda= seq(0,6000,1))
