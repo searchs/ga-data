@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # <nbformat>3.0</nbformat>
-
 # <codecell>
+#commmandline beautiful launcher: ipython notebook --pylab=inline --autoindent --pprint
 
 import pandas as pd
 import numpy as np
