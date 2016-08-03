@@ -42,6 +42,18 @@ jk = pd.read_csv('subsaharan_africa.csv')
 
 life.columns
 
+
+# Get the external dataset from worldbank
+#  We have selected indicator, "SP.POP.TOTL"
+df = wb.download(
+                    # Specify indicator to retrieve
+                    indicator='SP.POP.TOTL',
+                    country=['all'],
+                    # Start Year
+                    start='2008',
+                    # End Year
+                    end=2016
+                )
 # <codecell>
 
 #create an array with all the years
