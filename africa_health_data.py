@@ -10,6 +10,13 @@ import statsmodels.api as sm
 import matplotlib.pyplot as plt
 from IPython.external.mathjax import install_mathjax
 
+from pandas_datareader import data, wb
+import folium
+import geocoder
+#import urllib2
+%pylab inline
+pylab.rcParams['figure.figsize'] = (10, 8)
+
 # <codecell>
 
 ls -h
