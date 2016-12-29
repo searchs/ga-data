@@ -65,17 +65,12 @@ print all_year.count
 
 #drop all columns with no values
 #life = life.dropna(axis=0)
-
-# <codecell>
-
 print life.head(4)
 
 # <codecell>
-
 life.shape
 
 # <codecell>
-
 #Clean the data by removing the columns that have no value in any row
 #new_data = total_data2.drop(['open', 'close'], axis=1)
 life = life.drop([str(x) for x in range(1960, 2000)], axis=1)
