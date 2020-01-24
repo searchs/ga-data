@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-# <nbformat>3.0</nbformat>
-# <codecell>
-#commmandline beautiful launcher: ipython notebook --pylab=inline --autoindent --pprint
-
 import pandas as pd
 import numpy as np
 from pandas import Series, DataFrame
@@ -13,32 +8,18 @@ from IPython.external.mathjax import install_mathjax
 from pandas_datareader import data, wb
 import folium
 import geocoder
+
 #import urllib2
 %pylab inline
 pylab.rcParams['figure.figsize'] = (10, 8)
 
-# <codecell>
-
 ls -h
-
-# <codecell>
-
 !head n -5 'footnote.csv' 
-
-# <codecell>
 
 !head -n 5 'subsaharan_africa.csv'
 
-# <codecell>
-
-life = []
-
-# <codecell>
-
 life = pd.read_csv('subsaharan_africa.csv', index_col=3, na_values=None)
 jk = pd.read_csv('subsaharan_africa.csv')
-
-# <codecell>
 
 life.columns
 
@@ -54,67 +35,43 @@ df = wb.download(
                     # End Year
                     end=2016
                 )
-# <codecell>
-
 #create an array with all the years
 all_year = [str(x) for x in range(1960, 2000)]
 #Check what's inside all_year
 print all_year.count
 
-# <codecell>
-
 #drop all columns with no values
 #life = life.dropna(axis=0)
 print life.head(4)
 
-# <codecell>
 life.shape
 
-# <codecell>
 #Clean the data by removing the columns that have no value in any row
 #new_data = total_data2.drop(['open', 'close'], axis=1)
 life = life.drop([str(x) for x in range(1960, 2000)], axis=1)
 life = life.drop('2012', axis=1)
 
-# <codecell>
-
 life = life.fillna(0)
 print life.head(3) #use 14 to confirm that there are 13 indicators
-
-# <codecell>
 
 #holds the description of the Indicators
 ind_desc = life['Indicator Name'][0:14]
 ind_desc
 
-# <codecell>
-
 type(life)
 
-# <codecell>
-
 life.columns
-
-# <codecell>
 
 #data.columns
 #ind_code = life['Indicator Code'][:14]
 #ind_code
 
-# <codecell>
-
 #life.columns = ['Country_Code','Indicator_Name', 'Indicator_Code', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011']
 print life.columns
-
-# <codecell>
-
-
-# <codecell>
 
 life = life.drop('Indicator Name', axis=1)
 life = life.drop('Country Name', axis=0)
 
-# <codecell>
 
 print life.columns
 
