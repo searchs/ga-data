@@ -38,11 +38,11 @@ df = wb.download(
 #create an array with all the years
 all_year = [str(x) for x in range(1960, 2000)]
 #Check what's inside all_year
-print all_year.count
+print(all_year.count)
 
 #drop all columns with no values
 #life = life.dropna(axis=0)
-print life.head(4)
+print(life.head(4))
 
 life.shape
 
@@ -52,7 +52,7 @@ life = life.drop([str(x) for x in range(1960, 2000)], axis=1)
 life = life.drop('2012', axis=1)
 
 life = life.fillna(0)
-print life.head(3) #use 14 to confirm that there are 13 indicators
+print(life.head(3)) #use 14 to confirm that there are 13 indicators
 
 #holds the description of the Indicators
 ind_desc = life['Indicator Name'][0:14]
@@ -67,13 +67,13 @@ life.columns
 #ind_code
 
 #life.columns = ['Country_Code','Indicator_Name', 'Indicator_Code', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011']
-print life.columns
+print(life.columns)
 
 life = life.drop('Indicator Name', axis=1)
 life = life.drop('Country Name', axis=0)
 
 
-print life.columns
+print(life.columns)
 
 # <codecell>
 
@@ -89,7 +89,7 @@ plt.plot(y, 'b--', label='DOT',figsize=(20,10), plt.legend(loc='best')) #the b i
 # <codecell>
 
 #life['Indicator Code']
-#plt.xlabel('Counted')
+plt.xlabel('Counted')
 plt.ylabel('People')
 h = life['2010']
 plt.figure();
@@ -100,7 +100,7 @@ h.plot(kind='bar',figsize=(18,8))
 
 #model = sm.ols(formula='Gas ~ Temp', data=whiteside, subset = whiteside['Insul']=="Before")
 #fitted = model.fit()
-#print fitted.summary()
+#print(fitted.summary())
 
 # <codecell>
 
@@ -134,7 +134,7 @@ life['Indicator_Name'][:14]
 # <codecell>
 
 #select particular indicator in every country
-print life['Indicator Code'][::13]
+print(life['Indicator Code'][::13])
 
 # <codecell>
 
@@ -172,11 +172,11 @@ hf = pd.DataFrame(life,columns=col_trim, index = life.index)
 
 # <codecell>
 
-print col_trim
+print(col_trim)
 
 # <codecell>
 
-print hf.head(3)
+print(hf.head(3))
 
 # <codecell>
 
@@ -189,7 +189,7 @@ ang = hf[:13]
 # <codecell>
 
 #bol = pd.DataFrame(data=life, index=None,columns=col_trim)
-print ang.head(3)
+print(ang.head(3))
 
 # <codecell>
 
@@ -207,18 +207,18 @@ kmeans.fit(ang)
 # <codecell>
 
 c = kmeans.predict(ang)
-print c
+print(c)
 
 # <codecell>
 
 import statsmodels.api as sm
 x =ang[['2006','2007','2008','2009','2010']]
 y = range(len(x))
-print x
+print(x)
 
 # <codecell>
 
-print y
+print(y)
 
 # <codecell>
 
@@ -227,7 +227,7 @@ ols_model = sm.OLS(y,x)
 # <codecell>
 
 fit = ols_model.fit()
-print fit.summary
+print(fit.summary)
 
 # <codecell>
 
@@ -238,7 +238,7 @@ print fit.summary
 t = ang
 from sklearn import cross_validation
 train, test, t_train, t_test = cross_validation.train_test_split(ang, t, test_size=0.3, random_state=0)
-print len(train), len(test), len(t_train), len(t_test)
+print(len(train), len(test), len(t_train), len(t_test))
 
 # <codecell>
 
@@ -247,20 +247,19 @@ clf = RandomForestRegressor()
 
 # <codecell>
 
-
 from sklearn.svm import SVR
 cf = SVR()
 cf.fit(train, t_train)
 classifier = cross_validation.fit()
 classifier.fit(train, t_train)
-print classifier.score(test, t_test)
+print(classifier.score(test, t_test))
 
 # <codecell>
 
 #Correlation
 from numpy import corrcoef
 corr = corrcoef(ang.T)
-print corr
+print(corr)
 
 # <codecell>
 
@@ -280,12 +279,12 @@ y = ang['2011']
 # <codecell>
 
 x = ang.columns[0:]
-print x
+print(x)
 
 # <codecell>
 
 y = ang.index
-print y
+print(y)
 
 # <codecell>
 
@@ -326,12 +325,13 @@ ang.plot(figsize(20,10), kind='bar'); plt.legend(loc='best')
 # <codecell>
 
 #2,3,4,5,6,7,8,9,10,11,12 (loads of countries) with data
-hf[13::13][:4].plot(kind(pie)
+hf[13::13][:4].plot(kind(pie))
 
 # <codecell>
 
 from sklearn import svm
 import statsmodels.api as sm
+
 life.columns[2][0:]
 
 # <codecell>
@@ -345,13 +345,15 @@ x = ang['Indicator Code'][0:]
 y = ang[1:]
 ols_model = sm.OLS(x,y)
 
-# <codecell>
 
 #model = sm.ols(formula='Gas ~ Temp', data=whiteside, subset = whiteside['Insul']=="Before")
-mod = pd.ols(y : Series, x : dict of DataFrame -> OLS)
+# mod = pd.ols(y: Series, x : dict of DataFrame -> OLS)
+mod = pd.ols() #see line above
 #model = sm.regression(formula='Indicator Code ~ 1999', data=life, subset = life['Country Code']=="AGO")
 fitted = mod.fit()
-print fitted.summary()
+print(fitted.summary())
+
+# %%
 
 # <codecell>
 
@@ -380,7 +382,7 @@ cf = hf['Indicator_Code'] = hf.index[-9]
 
 # <codecell>
 
-print cf
+print(cf)
 
 # <codecell>
 
@@ -390,7 +392,7 @@ grped = life.groupby(life.Country_Code)
 
 # <codecell>
 
-print type(grped)
+print(type(grped))
 
 # <codecell>
 
@@ -423,7 +425,7 @@ life.columns
 
 # <codecell>
 
-#df.CatA.where(df.CatA == 'a') 
+#df.CatA.where(df.CatA == 'a')
 nga = hf.where(life.Country_Code == 'NGA')
 
 # <codecell>
@@ -433,18 +435,18 @@ cups = hf[col_trim[0]][::13]
 
 # <codecell>
 
-print col_trim[1]
+print(col_trim[1])
 
 # <codecell>
 
 ind = 13
 yr = col_trim[1:]
 ct = len(col_trim)
-print col_trim[1:]
+print(col_trim[1:])
 
 # <codecell>
 
-print hf.all.where(hf[])
+print(hf.all.where(hf[]))
 
 # <codecell>
 
@@ -471,19 +473,14 @@ plot(h, label=life.Country_Code)
 ry = life.boxplot()
 #h.plot(kind='barh', stacked=True, label=life.Country_Code)
 
-# <codecell>
-
 life
 
-# <codecell>
 
 from pandas.tools.plotting import radviz
 
-# <codecell>
-
 #rn = range(0,56)
 #for n in rn:
- #   print df.values[-n]
+ #   print(df.values[-n])
 plt.figure()
 
 # <codecell>
@@ -511,13 +508,13 @@ pops.describe
 
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(pops[['Country Code', 'Indicator Code', '2005', '2006', '2007', '2008', '2009', '2010']], pops[['2011']], test_size=0.3, random_state=0)
 #check the size of each set in the training and test set
-print len(X_train), len(X_test), len(y_train), len(y_test)
+print(len(X_train), len(X_test), len(y_train), len(y_test))
 
 # <codecell>
 
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(ang[['2005', '2006', '2007', '2008', '2009', '2010']], ang[['2011']], test_size=0.3, random_state=0)
 #check the size of each set in the training and test set
-print len(X_train), len(X_test), len(y_train), len(y_test)
+print(len(X_train), len(X_test), len(y_train), len(y_test))
 
 # <codecell>
 
@@ -543,5 +540,4 @@ cups.plot()
 ang.plot()
 
 # <codecell>
-
 
